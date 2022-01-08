@@ -7,4 +7,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     minHeight: '100vh',
     padding: theme.spacing(2),
   },
+  mobileContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  deviceWrapper: {
+    width: '360px',
+    height: '760px',
+    border: '1px solid black',
+    borderRadius: '4px',
+    padding: theme.spacing(2),
+  },
 }));
