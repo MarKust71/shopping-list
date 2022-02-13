@@ -1,5 +1,5 @@
-import firebase from 'firebase/compat/app';
-import { getAnalytics } from 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 const {
   REACT_APP_API_KEY,
@@ -22,7 +22,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const firebaseApp = initializeApp(firebaseConfig);
 
-export default firebase;
+export const firebaseAuth = getAuth(firebaseApp);
