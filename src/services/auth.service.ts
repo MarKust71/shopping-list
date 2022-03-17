@@ -4,11 +4,13 @@ import { firebaseAuth } from 'config/firebase.config';
 
 export const socialMediaAuth = async (provider: AuthProvider) => {
   try {
-    const res = await signInWithPopup(firebaseAuth, provider);
-    console.log(res.user);
-    return res.user;
+    const result = await signInWithPopup(firebaseAuth, provider);
+    console.log(result.user);
+
+    return result.user;
   } catch (error) {
     console.log('Error:', error);
+
     return error;
   }
 };
