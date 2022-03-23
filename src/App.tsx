@@ -1,25 +1,21 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material';
 import { Helmet } from 'react-helmet';
 
-import { theme } from 'theme/theme';
 import { MainRouter } from 'routing/MainRouter';
 import { AppContainer } from 'ui/containers/appContainer/AppContainer';
-import { useAuthContext } from 'hooks/useAuthContext/useAuthContext';
+import { AppProviders } from 'app/main/appProviders/AppProviders';
 
 export const App = () => {
-  const { currentUser } = useAuthContext();
-
   return (
     <>
       <Helmet>
-        <title>{`Shopping List - ${currentUser ? 'LOOGED-IN' : 'LOGGED-OUT'}`}</title>
+        <title>{'Shopping List'}</title>
       </Helmet>
-      <ThemeProvider theme={theme}>
+      <AppProviders>
         <AppContainer>
           <MainRouter />
         </AppContainer>
-      </ThemeProvider>
+      </AppProviders>
     </>
   );
 };
