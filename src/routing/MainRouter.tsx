@@ -1,21 +1,32 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { Login } from 'app/auth/login/Login';
 import { Logout } from 'app/auth/logout/Logout';
-import { useAuthenticationContext } from 'hooks/useAuthenticationContext/useAuthenticationContext';
 import { Main } from 'app/main/Main';
 
-export const MainRouter = () => {
-  const { currentUser } = useAuthenticationContext();
+import { ProtectedRoute } from './ProtectedRoute';
 
+export const MainRouter = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={currentUser ? <Main /> : <Login />} />
-        <Route path="login" element={<Login />} />
-        <Route path="logout" element={<Logout />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/logout"
+        element={
+          <ProtectedRoute>
+            <Logout />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Main />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 };
